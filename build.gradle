@@ -1,0 +1,60 @@
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.34")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    libs = [
+            test    : [
+                    serenity: [
+                            core               : "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+                            cucumber           : "net.serenity-bdd:serenity-cucumber6:${serenityCucumberVersion}",
+                            junit              : "net.serenity-bdd:serenity-junit:${serenityCoreVersion}",
+
+                            ensure             : "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
+                    ],
+                    //gson        : "com.google.code.gson:gson:${gson}",
+                    junit       : "junit:junit:${junitVersion}",
+                    assertj     : "org.assertj:assertj-core:${assertJVersion}",
+                    hamcrest    : "org.hamcrest:hamcrest-all:${hamcrestVersion}",
+                    lombok      : "org.projectlombok:lombok:${lombokVersion}"
+            ]
+    ]
+}
+
+dependencies {
+
+    implementation group: 'net.serenity-bdd', name: 'serenity-core', version: '2.6.0'
+    implementation group: 'net.serenity-bdd', name: 'serenity-cucumber6', version: '2.6.0'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: '2.6.0'
+    implementation group: 'net.serenity-bdd', name: 'serenity-screenplay-rest', version: '2.6.0'
+    implementation group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: '2.6.0'
+
+
+
+
+
+    testAnnotationProcessor libs.test.lombok
+}
+gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)
