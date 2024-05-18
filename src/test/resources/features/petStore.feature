@@ -1,6 +1,4 @@
 #language:es
-
-@Pet
 Característica: Api Pet Store localhost:8080
   Yo como usuario del portal Pet Store
   Quiero ejecutar los servicios del portal
@@ -21,6 +19,16 @@ Característica: Api Pet Store localhost:8080
     Ejemplos:
       | id |
       | 10 |
+
+  @Pet @FindPetForIncorrectID
+  Esquema del escenario: Buscar mascota por ID incorrecto (Get)
+    Dado que Erik tiene los datos para ejecutar el servicio
+    Cuando se ejecuta la busqueda de ID <id> en servicio rest
+    Entonces el servicio responder de manera fallida
+
+    Ejemplos:
+      | id |
+      | 20 |
 
   @Pet @UpdatePet
   Escenario: Actualizar mascota (Update)

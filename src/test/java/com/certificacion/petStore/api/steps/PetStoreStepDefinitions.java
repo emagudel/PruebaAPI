@@ -1,10 +1,7 @@
 package com.certificacion.petStore.api.steps;
 
 import com.certificacion.petStore.api.helpers.DTO;
-import com.certificacion.petStore.api.tasks.FindPetForID;
-import com.certificacion.petStore.api.tasks.AddNewPet;
-import com.certificacion.petStore.api.tasks.UpdatePet;
-import com.certificacion.petStore.api.tasks.ValidateSCOk;
+import com.certificacion.petStore.api.tasks.*;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
@@ -46,6 +43,14 @@ public class PetStoreStepDefinitions {
         theActorInTheSpotlight()
                 .attemptsTo(
                         ValidateSCOk.without()
+                );
+    }
+
+    @Entonces("el servicio responder de manera fallida")
+    public void elServicioResponderDeManeraFallida() {
+        theActorInTheSpotlight()
+                .attemptsTo(
+                        ValidateSCOkFail.without()
                 );
     }
 

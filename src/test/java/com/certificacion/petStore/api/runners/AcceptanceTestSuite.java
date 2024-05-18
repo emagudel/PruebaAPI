@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features="src/test/resources/features/",
         glue="com.certificacion.petStore.api",
-        tags = "@Pet",
+        tags = "@FindPetForIncorrectID",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class AcceptanceTestSuite {}
